@@ -327,6 +327,9 @@ class IcalParser {
 				}
 			} else {
 				$value = strtr($value, ['\\\\' => '\\', '\\N' => "\n", '\\n' => "\n", '\\;' => ';', '\\,' => ',']);
+				// remove emojis
+				$value = mb_convert_encoding($value, "ISO-8859-1", "UTF-8");
+				$value = mb_convert_encoding($value, "UTF-8", "ISO-8859-1");
 			}
 		}
 
